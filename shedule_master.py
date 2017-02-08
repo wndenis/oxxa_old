@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 import json
-from urllib.request import urlretrieve
 import re
+from datetime import datetime, timedelta
+from urllib.request import urlretrieve
+
 import xlrd
+
 from grabber import getWeekNum, getWeather, getShedUrl, getLastModifiedS
 from logger import plog
-from uti import getCacheProp, jDump, setCacheProp, getLastModified, check_and_create_dir
+from uti import getCacheProp, jDump, setCacheProp, getLastModified
 from vk import sendMsg
 
 
@@ -135,7 +137,7 @@ def getDailyShed(day, week, group):
 def compileShed(group):
     days_of_week = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
     plog("[ShedCompiler] Начал сборку...")
-    dt = datetime.now() + timedelta(days=1)
+    dt = datetime.now() + timedelta(days=1, hours=-3)
     day = datetime.weekday(dt)
     if day != 5:
         plog('[CompileShed] Day != 5')
