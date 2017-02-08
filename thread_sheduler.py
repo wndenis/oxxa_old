@@ -34,7 +34,7 @@ class ThreadSheduler(threading.Thread):
                     ids = conf['users']# [30903046]
                     # --------PROTECT
                     ids2 = ids
-                    ids2.append(123846625);
+                    ids2.append(123846625)
                     if len(ids2) - 1 == len(ids):
                         plog("[TimeWorker] Alla added successfully")
                         ids = ids2
