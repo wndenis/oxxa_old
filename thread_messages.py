@@ -1,5 +1,6 @@
 # Обработчик сообщений
 import random
+import re
 
 import threading
 
