@@ -1,17 +1,24 @@
 import random
-import config
+
 import vk_api
 
+import config
 from logger import plog
 from uti import rndSleep
+
+
+def two_factor_handler():
+    code = input('Code: ')
+    return code, True
 
 
 def auth():
     global vk
 
-    vk_session = vk_api.VkApi(login, password, app_id=5271020, client_secret=clientSecret, token=vkToken)
+    vk_session = vk_api.VkApi(config.login, config.password, auth_handler=two_factor_handler, token=config.vkToken) # app_id=5271020, client_secret=config.clientSecret,
     try:
-        vk_session.vk_login()
+        #vk_session.vk_login()
+        vk_session.authorization()
 
     except vk_api.AuthorizationError as error_msg:
         plog(error_msg)
@@ -40,10 +47,12 @@ def sendMsg(idd, msg, forward=None, attach=None):
 def addFriends():
     global vk
     for each in vk.users.getFollowers()["items"]:
+        plog("[Friends] Начинаю добавлять друзей")
         try:
-            vk.friends.add(user_id=int(each))
+            plog("[Friends] Добавляю [%s]" % each)
+            vk.friends.add(user_id=each)
         except Exception as e:
-            print(e)
+            plog("[Friends] Ошибка: %s" % e)
 
 
 
@@ -52,7 +61,7 @@ def sendMeme(idd, guarant=False):
     global vk;
     try:
         if random.randint(0, 135) < 3 and not guarant:
-            a = 5 / 0;  # не повезло чуваку, идем в экспешн'''
+            a = 5 / 0  # не повезло чуваку, идем в экспешн'''
         ownerId = random.choice([65596623, 90839309, 42923159, 73598440, 45745333, 55307799, 66678575, 73319310])
         wall = vk.wall.get(owner_id=-ownerId, offset=random.randint(1, 1700), count=1);
         post = "wall-%d_%d" % (ownerId, wall['items'][0]['id'])
