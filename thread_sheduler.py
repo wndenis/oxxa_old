@@ -1,5 +1,5 @@
-from datetime import datetime
 import threading
+from datetime import datetime
 
 from logger import plog
 from shedule_master import checkNewShed, downloadShed, compileShed
@@ -45,9 +45,7 @@ class ThreadSheduler(threading.Thread):
                             sendMsg(idd, "=========================\n%s\n=========================\n" % shed)
                     sendTeleMsg(shed)
                     plog('[TimeWorker] Расписание доставлено')
-                    plog("[TimeWorker] Начинаю добавлять друзей")
-                    addFriends();
-
+                    addFriends()
                     plog('##########################################################')
                 else:
                     plog("[TimeWorker] Рассылка не требуется")
