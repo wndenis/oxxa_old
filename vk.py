@@ -58,7 +58,7 @@ def addFriends():
 
 
 def sendMeme(idd, guarant=False):
-    global vk;
+    global vk
     try:
         if str(idd) == str(314947049):
             sendMsg(idd, random.choice(['Никита, ищи себе мемы сам',
@@ -66,6 +66,7 @@ def sendMeme(idd, guarant=False):
                                         'Я, конечно, нашла прикол, но, боюсь, ты его не поймешь',
                                         'Нит)',
                                         'Спроси мем у кого нибудь другого']))
+            return
         if random.randint(0, 135) < 3 and not guarant:
 
             a = 5 / 0  # не повезло чуваку, идем в экспешн'''
