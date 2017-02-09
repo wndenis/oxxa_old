@@ -60,12 +60,19 @@ def addFriends():
 def sendMeme(idd, guarant=False):
     global vk;
     try:
+        if str(idd) == str(314947049):
+            sendMsg(idd, random.choice(['Никита, ищи себе мемы сам',
+                                        'Не кину',
+                                        'Я, конечно, нашла прикол, но, боюсь, ты его не поймешь',
+                                        'Нит)',
+                                        'Спроси мем у кого нибудь другого']))
         if random.randint(0, 135) < 3 and not guarant:
+
             a = 5 / 0  # не повезло чуваку, идем в экспешн'''
-        ownerId = random.choice([65596623, 90839309, 42923159, 73598440, 45745333, 55307799, 66678575, 73319310])
-        wall = vk.wall.get(owner_id=-ownerId, offset=random.randint(1, 1700), count=1);
+        ownerId = random.choice([65596623, 90839309, 73598440, 45745333, 55307799, 66678575, 73319310])
+        wall = vk.wall.get(owner_id=-ownerId, offset=random.randint(1, 300), count=1);
         post = "wall-%d_%d" % (ownerId, wall['items'][0]['id'])
-        msg = random.choice(['Ня', 'Держи)', 'Воть'])
+        msg = random.choice(['Ня', 'Держи)', 'Воть', 'Прошу', 'Принимай мемос)', '', '', ''])
         sendMsg(idd, msg, attach=post)
         plog('[SendMeme] Отправила мемчик')
     except:
