@@ -130,7 +130,7 @@ def getDailyShed(day, week, group):
 
     for pair in shed:
         pairNum += 1
-        ans += "%s) %s\n%s\n" % (pairNum, pair["time"], pair[weekType]["lesson"])
+        ans += "%s) %s\n%s\n\n" % (pairNum, pair["time"], pair[weekType]["lesson"])
     return ans
 
 
