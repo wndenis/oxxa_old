@@ -21,11 +21,12 @@ class ThreadSheduler(threading.Thread):
             dt = datetime.now()
             if dt.hour > 14 or dt.hour < 2:
                 plog('[TimeWorker] Пришло время расписания')
+                addFriends()
                 if not timeChecked:
                     plog('##########################################################')
                     newShed = checkNewShed()
                     if newShed[0]:
-                        downloadShed(newShed[1]);
+                        downloadShed(newShed[1])
                     plog('---338')
                     plog('[TimeWorker] Начинаю рассылку...')
                     shed = compileShed('ИСБО-01-16')
@@ -45,7 +46,6 @@ class ThreadSheduler(threading.Thread):
                             sendMsg(idd, "=========================\n%s\n=========================\n" % shed)
                     sendTeleMsg(shed)
                     plog('[TimeWorker] Расписание доставлено')
-                    addFriends()
                     plog('##########################################################')
                 else:
                     plog("[TimeWorker] Рассылка не требуется")
