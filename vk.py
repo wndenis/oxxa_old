@@ -17,7 +17,6 @@ def auth():
 
     vk_session = vk_api.VkApi(config.login, config.password, auth_handler=two_factor_handler, token=config.vkToken) # app_id=5271020, client_secret=config.clientSecret,
     try:
-        #vk_session.vk_login()
         vk_session.authorization()
 
     except vk_api.AuthorizationError as error_msg:
@@ -29,13 +28,13 @@ def auth():
 def sendMsg(idd, msg, forward=None, attach=None):
     global vk
     try:
-        vk.messages.setActivity(user_id=353056438, type='typing', peer_id=int(idd));  # Типа печатаем
+        vk.messages.setActivity(user_id=353056438, type='typing', peer_id=int(idd))  # Типа печатаем
         vk.messages.send(peer_id=int(idd), message=msg, forward_messages=forward, attachment=attach)
-    except:
-        plog("[MSG] %s не может принять сообщение" % (idd))
+    except Exception as e:
+        plog("[MSG] %s не может принять сообщение (%s)" % (idd, e))
         try:
-            vk.messages.setActivity(user_id=353056438, type='typing', peer_id=int(idd));  # Типа печатаем
-            rndSleep();
+            vk.messages.setActivity(user_id=353056438, type='typing', peer_id=int(idd))  # Типа печатаем
+            rndSleep()
             vk.messages.send(user_id=int(idd), message=msg, attachment=attach)
         except:
             plog("[MSG] %s не смог принять сообщение!!!!" % (idd))
