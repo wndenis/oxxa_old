@@ -68,10 +68,9 @@ def sendMeme(idd, guarant=False):
                                         'Спроси мем у кого нибудь другого']))
             return
         if random.randint(0, 135) < 3 and not guarant:
-
             a = 5 / 0  # не повезло чуваку, идем в экспешн'''
         ownerId = random.choice([65596623, 90839309, 73598440, 45745333, 55307799, 66678575, 73319310])
-        wall = vk.wall.get(owner_id=-ownerId, offset=random.randint(1, 300), count=1);
+        wall = vk.wall.get(owner_id=-ownerId, offset=random.randint(1, 100), count=1);
         post = "wall-%d_%d" % (ownerId, wall['items'][0]['id'])
         msg = random.choice(['Ня', 'Держи)', 'Воть', 'Прошу', 'Принимай мемос)', '', '', ''])
         sendMsg(idd, msg, attach=post)
