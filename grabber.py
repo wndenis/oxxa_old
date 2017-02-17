@@ -49,13 +49,35 @@ def getWeather():
         temperature = day['high']['celsius']  # Температура днем
         cond = day['conditions']  # Условия
         wind = day['avewind']['mph']  # Ветер м/c
+
+        if wind < 1:
+            wind = "Безветренно"
+        elif wind < 3:
+            wind = "Легкий ветер"
+        elif wind < 5:
+            wind = "Слабый ветер"
+        elif wind < 8:
+            wind = "Умеренный ветер"
+        elif wind < 15:
+            wind = "Сильный ветер"
+        elif wind < 24:
+            wind = "Очень сильный ветер"
+        else:
+            wind = "Ураган!"
+
+
+
+
+
+
+
         PoP = day['pop']  # Шанс осадков в этот день
         # humidity = day['avehumidity'] # Влажность
         # qpf = max(day['qpf_allday']['mm'], day['snow_allday']['mm']) # Осдаки мм (max из снега и дождя)
 
         summary = ('%s\n'
                    'Температура днем: %s°С\n'
-                   'Ветер: %s м/с\n'
+                   '%s\n'
                    'Вероятность осадков: %s%%') % (cond, temperature, wind, PoP)
     return summary
 
