@@ -1,7 +1,5 @@
 # Обработчик сообщений
 import random
-import re
-
 import threading
 
 import requests
@@ -84,22 +82,12 @@ class ThreadMessages(threading.Thread):
                     else:
                         sendMeme(idd)
 
-                elif 'скажи' in command:  # окса мем
-                    if random.randint(0, 100) > 10:
-                        try:
-                            end_id = re.search('скажи', command).span()[1]
-                            plog(command[end_id:])
-                            sendMsg(idd, command[end_id:])
-                        except Exception as err:
-                            plog(err)
-                            sendMsg(idd, 'Ну и что мне сказать?')
-                    else:
-                        sendMsg(idd, random.choice(['Не скажу', 'Не хочу', 'Не буду']))
-
                 elif any(x in command for x in ['прив', 'хай', 'здравств']):
                     sendMsg(idd, random.choice(['Приветик)',
                                                 'Привет',
                                                 'Здравствуй']))
+                elif "карта" in command:
+                    sendMsg(idd, "Карта кампуса МИРЭА", attach="photo353056438_456239020")  # Ссылка на карту кампуса
             elif 'жопа' in command:
                 sendMsg(idd, "Да, жопа!")
 
