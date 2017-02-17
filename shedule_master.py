@@ -139,7 +139,7 @@ def compileShed(group):
     plog("[ShedCompiler] Начал сборку...")
     dt = datetime.now() + timedelta(days=1, hours=-3)
     day = datetime.weekday(dt)
-    if day != 5:
+    if day != 6:
         plog('[CompileShed] Day != 5')
         week = getWeekNum()
         if day == 6 or day == 0:
